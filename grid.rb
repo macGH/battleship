@@ -1,5 +1,19 @@
+require './ship'
+require 'pry'
+
 class Grid
+  def initialize
+    @grid = Array.new()
+    @ships = Array.new()
+  end
+
   def has_ship_on?(col, row)
+    # binding.pry
+    @ships.each do |ship|
+      # binding.pry
+      return true if ship.covers?(col, row)
+    end
+    false
   end
 
   def display
@@ -16,5 +30,10 @@ class Grid
     puts "I |   |   |   |   |   |   |   |   |   |   |"
     puts "J |   |   |   |   |   |   |   |   |   |   |"
     puts "  -----------------------------------------"
+  end
+
+  def place_ship(ship, col, row, direction)
+    ship.place(col, row, direction)
+    @ships << ship
   end
 end
