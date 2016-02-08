@@ -1,8 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 
-#HARHAR MASON WUZ HERE
-
 #Note: This line is going to fail first.
 require './battleship.rb'
 
