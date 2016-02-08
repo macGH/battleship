@@ -8,6 +8,7 @@ class Ship
     @row = -1
     @col = -1
     @direction = nil
+    @pegs = Array.new(@length, false)
   end
 
   def place(col, row, direction)
@@ -15,7 +16,6 @@ class Ship
     @row = row
     @direction = direction
     @col = col
-
   end
 
   def covers?(col, row)
@@ -40,7 +40,14 @@ class Ship
   end
 
   def fire_at(col, row)
-    self.covers?(col, row)
+    if self.covers?(col, row)
+      index = (direction ? col - @col : row - @row )
+      @pegs[index] ? false : @pegs[index] = true
+    end
+  end
+
+  def sunk?
+    !@pegs.include?(false)
   end
 
 end
