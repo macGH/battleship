@@ -2,12 +2,20 @@ require './human_player'
 require './computer_player'
 
 class Game
-  def initialize(player1, player2)
+  SHIPS_LENGTHS = [2, 3, 3, 4, 5]
+
+  def initialize(player1, player2, ships_lengths = SHIPS_LENGTHS)
     @player1 = player1
     @player2 = player2
+    @ships_lengths = ships_lengths
   end
 
   def welcome
     puts "Welcome, #{@player1.name} and #{@player2.name}!\nIt's time to play Battleship."
+  end
+
+  def place_ships
+    @player1.place_ships(@ships_lengths)
+    @player2.place_ships(@ships_lengths)
   end
 end
