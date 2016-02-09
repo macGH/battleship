@@ -89,5 +89,7 @@ class Grid
     return ('A'..'Z').to_a.index(col)+1
   end
 
+  
+
 
 end

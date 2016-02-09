@@ -1,6 +1,9 @@
+require './grid'
 class Player
-  attr_reader :name
-  def initialize(name)
-    @name = name
+  attr_reader :grid, :ships
+
+  def initialize()
+    @grid = Grid.new
+    @ships = []
   end
 end
