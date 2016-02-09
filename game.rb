@@ -18,4 +18,11 @@ class Game
     @player1.place_ships(@ships_lengths)
     @player2.place_ships(@ships_lengths)
   end
+
+  def display_status
+    puts "SHOTS TAKEN:"
+    @player1.shots_grid.display
+    puts "\nYOUR BOARD:"
+    @player1.grid.display
+  end
 end
