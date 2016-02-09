@@ -47,7 +47,6 @@ class Grid
       end
     else
       (0..ship.length - 1).each do |i|
-        # byebug
         @grid[row  + i - 1][col - 1] = "O"
       end
     end
