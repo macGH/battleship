@@ -21,11 +21,12 @@ class Grid
     puts "    1   2   3   4   5   6   7   8   9   10"
     puts "  -----------------------------------------"
     @grid.each do |row|
-      print "#{('A'..'Z').to_a[i]} | "
+      temp_str = ""
+      temp_str += "#{('A'..'Z').to_a[i]} | "
       row.each do |cell|
-        print cell + " | "
+        temp_str += cell + " | "
       end
-      print "\n"
+      puts temp_str.strip
       i += 1
     end
     puts "  -----------------------------------------"
@@ -48,13 +49,36 @@ class Grid
     end
     if direction
       (0..ship.length - 1).each do |i|
-        @grid[row - 1][col + i - 1] = "0"
+        @grid[row - 1][col + i - 1] = "O"
       end
     else
       (0..ship.length - 1).each do |i|
-        @grid[row  + i - 1][col - 1] = "0"
+        @grid[row  + i - 1][col - 1] = "O"
       end
     end
     @ships << ship
   end
+
+  def fire_at(col, row)
+    @ships.each do |s|
+      if s.fire_at(col, row)
+        @grid[row-1][col-1] = "X"
+        return true
+      end
+    end
+    false
+  end
+
+  def sunk?
+    return false if @ships.empty?
+    @ships.each do |s|
+      return false if !s.sunk?
+    end
+    true
+  end
+
+  def x_of(coord)
+    return coord.scan(/\d+/)[0].to_i
+  end
+
 end
