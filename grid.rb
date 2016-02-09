@@ -81,4 +81,13 @@ class Grid
     return coord.scan(/\d+/)[0].to_i
   end
 
+  def y_of(coord)
+    convert_col_to_num(coord[/[a-zA-Z]+/])
+  end
+
+  private def convert_col_to_num(col)
+    return ('A'..'Z').to_a.index(col)+1
+  end
+
+
 end
