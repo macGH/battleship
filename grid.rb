@@ -1,9 +1,13 @@
 require './ship'
-require 'pry'
+require 'byebug'
 
 class Grid
+  attr_reader :width, :height
+
   def initialize
-    @grid = Array.new(10) {Array.new(10) {" "} }
+    @width = 10
+    @height = 10
+    @grid = Array.new(@height) {Array.new(@width) {" "} }
     @ships = Array.new()
   end
 
@@ -30,16 +34,6 @@ class Grid
       i += 1
     end
     puts "  -----------------------------------------"
-    # puts "A |   |   |   |   |   |   |   |   |   |   |"
-    # puts "B |   |   |   |   |   |   |   |   |   |   |"
-    # puts "C |   |   |   |   |   |   |   |   |   |   |"
-    # puts "D |   |   |   |   |   |   |   |   |   |   |"
-    # puts "E |   |   |   |   |   |   |   |   |   |   |"
-    # puts "F |   |   |   |   |   |   |   |   |   |   |"
-    # puts "G |   |   |   |   |   |   |   |   |   |   |"
-    # puts "H |   |   |   |   |   |   |   |   |   |   |"
-    # puts "I |   |   |   |   |   |   |   |   |   |   |"
-    # puts "J |   |   |   |   |   |   |   |   |   |   |"
   end
 
   def place_ship(ship, col, row, direction)
@@ -53,6 +47,7 @@ class Grid
       end
     else
       (0..ship.length - 1).each do |i|
+        # byebug
         @grid[row  + i - 1][col - 1] = "O"
       end
     end
@@ -89,7 +84,7 @@ class Grid
     return ('A'..'Z').to_a.index(col)+1
   end
 
-  
+
 
 
 end
