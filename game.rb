@@ -25,4 +25,7 @@ class Game
     puts "\nYOUR BOARD:"
     @player1.grid.display
   end
+
+  def take_turn
+  end
 end
