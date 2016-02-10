@@ -63,7 +63,7 @@ class Grid
         return true
       end
     end
-    @grid[row-1][col-1] = "-"
+    @grid[row-1][col-1] = "-" if @grid[row-1][col-1] == " "
     false
   end
 
