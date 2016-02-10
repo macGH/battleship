@@ -57,7 +57,6 @@ class Grid
   def fire_at(col, row)
     return false if col > @width || row > @height
     @ships.each do |s|
-      return false if off_the_grid(s.length, col, row, s.direction, @width, @height)
       if s.fire_at(col, row)
         @grid[row-1][col-1] = "X"
         return true

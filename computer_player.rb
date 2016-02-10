@@ -27,6 +27,8 @@ class ComputerPlayer < Player
   def call_shot
     col = rand(1..10)
     row = ('A'..'J').to_a[rand(10)]
-    row + col.to_s
+    coord = row + col.to_s
+    puts coord
+    coord
   end
 end
