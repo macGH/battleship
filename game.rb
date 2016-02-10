@@ -28,13 +28,34 @@ class Game
 
   def take_turn
     current_player = @players[(@turn_number % 2) - 1]
+    opposing_player = @players[@turn_number % 2]
     coord = current_player.call_shot
     col = current_player.grid.x_of(coord)
     row = current_player.grid.y_of(coord)
 
-    @players[@turn_number % 2].grid.fire_at(col, row) ? (puts "Hit!") : (puts "Miss!")
+    opposing_player.grid.fire_at(col, row) ? (puts "Hit!") : (puts "Miss!")
 
+    if opposing_player.grid.sunk?
+      declare_winner(current_player)
+      return false
+    end
     @turn_number += 1
-
+    true
   end
+
+  def play
+    welcome
+    place_ships
+    loop do
+      puts "\n"
+      display_status
+      puts "\n"
+      break if !take_turn
+    end
+  end
+
+  private def declare_winner(winner)
+    puts "Congratulations, #{winner.name}! A winner is YOOOUUUUUUU! "
+  end
+
 end
