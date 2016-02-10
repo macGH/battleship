@@ -5,7 +5,6 @@ class Player
 
   def initialize()
     @grid = Grid.new
-    @shots_grid = Grid.new
     @ships = []
   end
 end

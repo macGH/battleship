@@ -12,15 +12,10 @@ class Grid
   end
 
   def has_ship_on?(col, row)
-    # binding.pry
-    @ships.each do |ship|
-      # binding.pry
-      return true if ship.covers?(col, row)
-    end
-    false
+    @ships.any? {|ship| ship.covers?(col, row)}
   end
 
-  def display
+  def display(scrub = false)
     i = 0
     puts "    1   2   3   4   5   6   7   8   9   10"
     puts "  -----------------------------------------"
@@ -28,7 +23,11 @@ class Grid
       temp_str = ""
       temp_str += "#{('A'..'Z').to_a[i]} | "
       row.each do |cell|
-        temp_str += cell + " | "
+        if scrub
+          temp_str += cell.gsub("O", " ").gsub("X", "+") + " | "
+        else
+          temp_str += cell.gsub("-", " ") + " | "
+        end
       end
       puts temp_str.strip
       i += 1
@@ -65,10 +64,8 @@ class Grid
 
   def sunk?
     return false if @ships.empty?
-    @ships.each do |s|
-      return false if !s.sunk?
-    end
-    true
+    @ships.all? {|s| s.sunk?}
+
   end
 
   def x_of(coord)

@@ -21,11 +21,12 @@ class Game
 
   def display_status
     puts "SHOTS TAKEN:"
-    @player1.shots_grid.display
+    @player2.grid.display(true)
     puts "\nYOUR BOARD:"
     @player1.grid.display
   end
 
   def take_turn
+
   end
 end
