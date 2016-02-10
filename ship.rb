@@ -5,18 +5,17 @@ class Ship
 
   def initialize (length) #, row=-1, col=-1, direction=nil)
     @length = length
-    @row = -1
-    @col = -1
     @direction = nil
     @pegs = Array.new(@length, false)
   end
 
   def place(col, row, direction)
-    return false if !@direction.nil?
+    return false unless @direction.nil?
     @row = row
-    @direction = direction
     @col = col
-  end
+    @direction = direction
+    true
+end
 
   def covers?(col, row)
     if @direction
@@ -40,7 +39,7 @@ class Ship
   end
 
   def fire_at(col, row)
-    if self.covers?(col, row)
+    if covers?(col, row)
       index = (direction ? col - @col : row - @row )
       @pegs[index] ? false : @pegs[index] = true
     end

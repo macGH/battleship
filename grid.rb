@@ -1,12 +1,14 @@
 require './ship'
+require './off_the_grid'
 require 'byebug'
 
 class Grid
+  include OffTheGrid
   attr_reader :width, :height
 
-  def initialize
-    @width = 10
-    @height = 10
+  def initialize(width = 10, height = 10)
+    @width = width
+    @height = height
     @grid = Array.new(@height) {Array.new(@width) {" "} }
     @ships = Array.new()
   end
@@ -53,12 +55,15 @@ class Grid
   end
 
   def fire_at(col, row)
+    return false if col > @width || row > @height
     @ships.each do |s|
+      return false if off_the_grid(s.length, col, row, s.direction, @width, @height)
       if s.fire_at(col, row)
         @grid[row-1][col-1] = "X"
         return true
       end
     end
+    @grid[row-1][col-1] = "-"
     false
   end
 
@@ -77,7 +82,11 @@ class Grid
   end
 
   private def convert_col_to_num(col)
-    return ('A'..'Z').to_a.index(col)+1
+    total = 0
+    col.upcase.reverse.split("").each_with_index do |letter, i|
+    total += (('A'..'Z').to_a.index(letter)+1) * 26**i
+   end
+   total
   end
 
 
