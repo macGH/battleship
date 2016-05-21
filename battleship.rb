@@ -1,4 +1,5 @@
 require './game'
+
 puts "                                     |__"
 puts "                                     |\\/"
 puts "                                     ---"

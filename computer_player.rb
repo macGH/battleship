@@ -28,7 +28,5 @@ class ComputerPlayer < Player
     col = rand(1..10)
     row = ('A'..'J').to_a[rand(10)]
     coord = row + col.to_s
-    puts coord
-    coord
   end
 end

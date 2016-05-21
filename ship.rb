@@ -1,4 +1,3 @@
-require 'pry'
 
 class Ship
   attr_reader :length, :col, :row, :direction
